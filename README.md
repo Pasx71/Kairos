@@ -4,6 +4,7 @@ Kairos is a comprehensive, highly-configurable survival enhancement plugin that 
 Below is an outline of the core features included in the plugin.
 
 🌦️ Dynamic Seasons
+
 Experience an ever-changing world with a fully functional cycle of Spring, Summer, Autumn, and Winter.
 
 Crop Growth & Greenhouses: Seasons dictate which crops can grow and how fast. Build greenhouses with adequate lighting to bypass seasonal restrictions.
