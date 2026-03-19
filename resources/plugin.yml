@@ -1,0 +1,47 @@
+name: Kairos
+version: 1.0
+main: com.kairos.KairosPlugin
+api-version: "1.17" # Updated to 1.17 to support Material.DEEPSLATE used in CaveIn.java
+description: A hardcore survival plugin featuring disasters, seasons, temperature, and custom mobs.
+
+# Ensures protection hooks and expansions load safely!
+softdepend: [WorldGuard, Lands, PlaceholderAPI]
+
+commands:
+  disasters:
+    description: Main command for managing disasters and entities.
+    usage: /disasters <start|summon|entities|vote|event|difficulty|whitelist|toggle|give|season|reload|disease>
+    aliases: [kairos, dis]
+
+permissions:
+  kairos.admin.*:
+    description: Gives access to all Kairos admin commands.
+    children:
+      kairos.start: true
+      kairos.summon: true
+      kairos.entities: true
+      kairos.admin.difficulty: true
+      kairos.admin.whitelist: true
+      kairos.admin.toggle: true
+      kairos.admin.give: true
+      kairos.admin.season: true
+      kairos.admin.reload: true
+      kairos.admin.stop: true
+      kairos.admin.disease: true
+      
+  # Individual Command Permissions (Mapped directly from Java classes)
+  kairos.start:
+    description: Allows force-starting disasters.
+    default: op
+  kairos.summon:
+    description: Allows summoning custom mobs.
+    default: op
+  kairos.entities:
+    description: Allows viewing and killing active custom mobs.
+    default: op
+  kairos.vote:
+    description: Allows players to vote on disasters.
+    default: true
+  kairos.event:
+    description: Allows players to view the ongoing event GUI.
+    default: true

@@ -1,0 +1,101 @@
+# ========================================== #
+#           KAIROS CUSTOM MOBS               #
+# ========================================== #
+# Configure the health, speed, damage, and unique abilities 
+# of all Kairos custom entities here. 
+# Base attributes apply automatically via CustomEntity.java!
+
+blood_zombie:
+  max_health: 40.0
+  movement_speed: 0.25
+  attack_damage: 6.0
+  abilities:
+    # Pulls the player towards the zombie if they are within range
+    pull_cooldown_ticks: 60
+    pull_radius: 8.0
+    pull_strength: 0.8
+
+ghoul:
+  max_health: 30.0
+  movement_speed: 0.28
+  attack_damage: 5.0
+  abilities:
+    # How long the ghoul spends crawling out of the dirt when spawned
+    crawl_duration_ticks: 40
+    # Pulls the player in for a bite
+    grab_distance: 4.0
+    grab_strength: 0.2
+
+psyco:
+  max_health: 40.0
+  movement_speed: 0.30
+  attack_damage: 8.0
+  abilities:
+    # How often (in ticks) it tries to break wooden doors
+    door_break_frequency: 10
+    # Teleports directly behind the player if they look away
+    teleport_cooldown_ticks: 60
+    min_stalk_range: 8.0
+    max_stalk_range: 40.0
+
+scarecrow:
+  max_health: 30.0
+  movement_speed: 0.23
+  attack_damage: 5.0
+  abilities:
+    # Throws explosive Jack O' Lanterns at targets
+    throw_range: 15.0
+    throw_cooldown_ticks: 60
+    splash_damage: 6.0
+
+vampire:
+  max_health: 40.0
+  movement_speed: 0.28
+  attack_damage: 7.0
+  abilities:
+    # Transforms into a fleeing bat when health drops below 30%
+    morph_to_bat_threshold: 0.30
+    # Transforms back into a Zombie when healed above 60%
+    morph_to_zombie_threshold: 0.60
+    # Passive regeneration while in Bat form
+    heal_amount: 1.0
+    heal_frequency_ticks: 10
+
+ancient_mummy:
+  max_health: 40.0
+  movement_speed: 0.25
+  attack_damage: 6.0
+  abilities:
+    # Bursts into a sprint when the target is far away
+    sprint_speed: 0.40
+    door_break_frequency: 10
+
+ancient_skeleton:
+  max_health: 30.0
+  movement_speed: 0.25
+  attack_damage: 4.0
+  abilities:
+    # Shoots a straight line of piercing fire particles
+    attack_range: 15.0
+    attack_cooldown_ticks: 80
+    spell_damage: 5.0
+
+skeleton_knight:
+  max_health: 20.0
+  attack_damage: 5.0
+  abilities:
+    # Overrides the speed of the Skeleton Horse it spawns on
+    mount_speed: 0.375
+
+zombie_knight:
+  max_health: 30.0
+  attack_damage: 6.0
+  abilities:
+    # Overrides the speed of the Zombie Horse it spawns on
+    mount_speed: 0.425
+
+lost_soul:
+  max_health: 14.0
+  movement_speed: 0.20
+  attack_damage: 3.0
+  abilities: {} # Relies entirely on native Java logic (Invisibility/Flight)
