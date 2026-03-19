@@ -1,0 +1,31 @@
+# ========================================== #
+#           KAIROS CUSTOM ITEMS              #
+# ========================================== #
+# You can register new custom items via Java extending CustomItem.java
+# Their stats, names, and cooldowns can be modified here without recompiling!
+
+wind_staff: 
+  # The Bukkit Material of the item
+  material: STICK
+  
+  # (Optional) For custom resource packs! 
+  # Set to 0 to disable. (Handled by ItemBuilder.java)
+  custom_model_data: 0 
+  
+  name: "&f&lStaff of Winds"
+  lore:
+    - "&7A relic from a Category 5 Hurricane."
+    - ""
+    - "&eRight-Click &7to cast a blast of wind!"
+    
+  # How long (in ticks) the player must wait before using it again. (20 ticks = 1 sec)
+  cooldown_ticks: 60
+  
+  # Custom variables pulled specifically by WindStaff.java
+  abilities:
+    # How hard it pushes entities away
+    push_force: 1.5
+    # How high it lifts entities into the air
+    upward_lift: 0.5
+    # The AoE radius around the player
+    radius: 5.0

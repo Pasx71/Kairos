@@ -1,0 +1,108 @@
+# ==========================================
+#            KAIROS MESSAGES
+# To mute any message, simply set it to "none"
+# ==========================================
+
+messages:
+  
+  errors:
+    usage: "&cUsage: %syntax%"
+    invalid_world: "&cWorld not found!"
+    invalid_player: "&cPlayer not found!"
+    invalid_disaster: "&cUnknown disaster: %disaster%"
+    unknown_action: "&cUnknown action: %action%"
+    invalid_item: "&cUnknown item: %item%"
+    unknown_disaster: "&cUnknown disaster or setting: %target%"
+    invalid_difficulty: "&cInvalid difficulty! Options: EASY, NORMAL, HARD, EXTREME, CUSTOM"
+
+  admin:
+    toggle_random: "&eRandom Disasters &ain &e%world% &aare now: %state%"
+    toggle_disaster: "&e%disaster% &a natural spawns are now: %state%"
+    difficulty_set: "&aDifficulty for &e%world% &aset to &e%diff%&a!"
+    whitelist_add: "&aAdded &e%player% &ato the disaster whitelist in &e%world%"
+    whitelist_remove: "&cRemoved &e%player% &cfrom the disaster whitelist in &e%world%"
+    give_success: "&aGave %amount%x %item% to %player%."
+    disaster_started: "&aDisaster &e%disaster%&a started in &e%world%&a!"
+    stop_success: "&aSuccessfully stopped &e%amount% &aactive disasters."
+
+  vote_success: "&aYour vote for %disaster% has been submitted!"
+
+  # Disaster Warnings (Players see this when a disaster starts near them)
+  weather:
+    earthquake:
+      level_1: "&4&lThe ground begins to violently shake!"
+      level_2: "&4&lThe ground begins to violently shake!"
+      level_3: "&4&lThe ground begins to violently shake!"
+      level_4: "&4&lA severe Earthquake is ripping the ground apart!"
+      level_5: "&4&lA devastating Earthquake is ripping the ground apart!"
+      level_6: "&4&lAn apocalyptic Earthquake is destroying the world!"
+    winds:
+      level_1: "&cExtreme Winds Incoming!"
+      level_2: "&cExtreme Winds Incoming!"
+      level_3: "&cExtreme Winds Incoming!"
+      level_4: "&cHurricane-force winds are incoming!"
+      level_5: "&cHurricane-force winds are incoming!"
+      level_6: "&cApocalyptic winds are tearing the world apart!"
+    sandstorm:
+      level_1: "&eA choking Sandstorm approaches!"
+      level_2: "&eA choking Sandstorm approaches!"
+      level_3: "&eA heavy Sandstorm approaches!"
+      level_4: "&eA heavy Sandstorm approaches!"
+      level_5: "&eA massive Sandstorm is burying the world!"
+      level_6: "&eA massive Sandstorm is burying the world!"
+    blizzard:
+      level_1: "&bA massive Blizzard is rolling in! Seek shelter!"
+      level_2: "&bA massive Blizzard is rolling in! Seek shelter!"
+      level_3: "&bA massive Blizzard is rolling in! Seek shelter!"
+      level_4: "&bA deadly Blizzard is freezing the world! Seek shelter!"
+      level_5: "&bA deadly Blizzard is freezing the world! Seek shelter!"
+      level_6: "&bAn apocalyptic Blizzard has arrived!"
+    tornado:
+      level_1: "&8&lA Tornado has touched down nearby!"
+      level_2: "&8&lA Tornado has touched down nearby!"
+      level_3: "&8&lA massive Tornado has touched down nearby!"
+      level_4: "&8&lA massive Tornado has touched down nearby!"
+      level_5: "&8&lA devastating Tornado is tearing through the landscape!"
+      level_6: "&8&lAn apocalyptic Tornado is annihilating everything!"
+    hurricane:
+      level_1: "&1&lA category 1 Hurricane has struck!"
+      level_2: "&1&lA category 2 Hurricane has struck!"
+      level_3: "&1&lA category 3 Hurricane has struck!"
+      level_4: "&1&lA category 4 Hurricane has struck!"
+      level_5: "&1&lA category 5 Hurricane has struck!"
+      level_6: "&1&lA category 6 Hurricane has struck!"
+    cavein: "&4&lThe cavern roof is collapsing!"
+
+  # Purge Messages
+  purge:
+    target_infestation: "&2&lSpider Infestation &7has targeted you!"
+    victory_infestation: "&aThe swarm has been squashed. You survived!"
+    
+    target_nether_purge: "&4&lNether Purge &7has targeted you!"
+    victory_nether_purge: "&aThe nether forces have scattered. You survived!"
+    
+    target_bandit_raid: "&8&lBandit Raid &7has targeted you!"
+    victory_bandit_raid: "&aThe bandits have retreated. You survived!"
+    
+    target_death_parade: "&5&lDeath Parade &7has targeted you!"
+    victory_death_parade: "&aThe parade has moved on. You survived!"
+
+  # Seasonal Messages
+  seasons:
+    season_forced: "&8[&bKairos&8] &7The season in &e%world% &7was forcefully changed to %season%&7!"
+    season_shifted: "&8[&bKairos&8] &7The season in &e%world% &7has shifted to %season%&7!"
+    death_parade_warning: "&8[&4&l!&8] &cThe dead are marching..."
+    mud_slowness: "&7The muddy ground slows your movement..."
+    hot_sand: "&cThe scorching sand burns your feet! You should wear boots!"
+    heavy_armor_heat: "&cYour heavy armor is cooking you alive in the summer heat!"
+    desert_night_chill: "&bThe winter desert winds chill you to the bone..."
+
+  # Disease Messages
+  disease:
+    feverish: "&2You feel feverish and sick..."
+    contracted: "&cYou have contracted a disease from your surroundings!"
+    cured: "&aThe milk has cleansed your illness!"
+
+  # Mobs
+  mobs:
+    blood_zombie_pull: "&cThe Blood Zombie pulls you in!"
