@@ -1,0 +1,135 @@
+# ==========================================
+#         KAIROS - AUTUMN SETTINGS
+# ==========================================
+
+# How many in-game days this season lasts.
+# Variance adds or subtracts random days to make it unpredictable (e.g., 30 +/- 5 days).
+duration: 30
+variance: 5
+
+# --- TIME & DAYLIGHT ---
+time:
+  # Multipliers for day/night speed. (Handled by TimeCycleTask.java)
+  # 1.0 is normal speed. 1.1 means days go slightly faster. 0.9 means nights are slightly longer.
+  day_speed_multiplier: 1.1   # Autumn days grow shorter
+  night_speed_multiplier: 0.9 # Autumn nights grow longer and darker
+
+# --- WEATHER FORCING ---
+weather_forcing:
+  # Autumn is known for heavy winds, rain, and approaching cold.
+  enabled: true
+  
+  # Chance to completely block rain/snow when the world tries to start a storm
+  block_rain_chance: 0.10
+  
+  # Chance to block the weather from clearing (Creates prolonged Autumn Storms)
+  block_clear_chance: 0.40
+
+# --- FARMING & CROP GROWTH ---
+farming:
+  # Master toggle for Seasonal Crop restrictions
+  enabled: true
+  
+  # Base boost/penalty to passive crop growth ticks (Handled by CropGrowthListener.java)
+  growth_boost: 0.05  # Slight boost, but crops are slowing down compared to Spring/Summer
+  growth_penalty: 0.15 # 15% chance for a crop to fail a growth tick due to the encroaching cold
+  
+  # Percentage of saplings that die when trying to grow into a tree
+  sapling_death_rate: 0.25 # Leaves are falling, making it harder for new trees to take root
+  
+  # --- THE HARVEST SEASON ---
+  # Unique to Autumn: Fully grown crops can drop 2x their usual yield when broken!
+  # (Handled natively by SeasonalHarvestListener.java)
+  enable_double_harvest: true
+  
+  # The base chance a crop will trigger the double harvest (Spawns happy villager particles & XP sound)
+  double_harvest_chance: 0.20
+  
+  # Integration: Allow players to increase their double harvest chance using a skill plugin!
+  # Note: This affects HARVESTING (BlockBreakEvent), not passive chunk growth.
+  modifier:
+    placeholder: "%aureliumskills_farming%" 
+    scale: 0.005 # Each level of farming adds 0.5% chance to double harvest
+  
+  # Crops that will simply refuse to grow during this season unless inside a Greenhouse
+  banned_crops:
+    - "MELON_STEM"
+    - "COCOA"
+
+# --- FISHING & LOOT ---
+fishing:
+  # Master toggle for Seasonal Fishing mechanics
+  enabled: true
+  
+  # 1.0 = Normal Vanilla fishing speed.
+  wait_multiplier: 1.0 
+  
+  # The base chance to hook something from the custom loot table instead of a vanilla fish.
+  custom_loot_chance: 0.20
+  
+  # "REPLACE" will delete the vanilla fish. "ADDITIVE" will drop the custom loot alongside the vanilla fish.
+  mode: "REPLACE"
+  
+  # Integration: Allow players to increase custom loot chance using a skill plugin!
+  modifier:
+    placeholder: "%mcmmo_level_fishing%"
+    scale: 0.001
+    
+  loot:
+    apple:
+      weight: 40.0
+      item: "APPLE"
+      min: 1
+      max: 3
+    bone:
+      weight: 20.0
+      item: "BONE"
+      min: 1
+      max: 5
+    # Example: Drop custom items registered in your CustomItemRegistry!
+    wind_staff:
+      weight: 1.0
+      item: "wind_staff" 
+      min: 1
+      max: 1
+
+# --- MOB SPAWNING ---
+spawning:
+  # Chance to cancel natural animal spawns (Wildlife begins to migrate/hide)
+  wildlife_spawn_penalty: 0.25
+  
+  hibernate_bees: false
+  cancel_spiders: false
+  
+  # "REPLACE" will delete the vanilla mob. "ADDITIVE" will spawn the custom mob alongside it.
+  mode: "REPLACE"
+  
+  # Replaces natural spawns with Custom Entities (from CustomEntityType registry)
+  # Format: VANILLA_MOB_TO_REPLACE: { "NEW_MOB": chance }
+  mob_replacements:
+    ZOMBIE:
+      scarecrow: 0.15      # 15% chance a Zombie becomes a pumpkin-throwing Scarecrow (Halloween theme!)
+      ghoul: 0.05          # 5% chance a Zombie is a Ghoul crawling from the dirt
+    SKELETON:
+      skeleton_knight: 0.10 # 10% chance a Skeleton spawns mounted as a Skeleton Knight
+
+# --- FOOD SPOILAGE ---
+spoilage:
+  # Raw foods still rot, but slower than Summer due to cooler temperatures.
+  # (Handled by FoodSpoilageTask.java)
+  enabled: true
+  
+  # Chance per interval for 1 piece of raw meat to turn into Rotten Flesh
+  chance_per_interval: 0.05
+  
+  # Integration: Allow players to resist food rot via external plugins (e.g. Foraging/Cooking skill)
+  modifier:
+    placeholder: "%aureliumskills_foraging%"
+    scale: 0.002 # Every level reduces rot chance by 0.2%
+
+# --- SEASONAL BIOME EFFECTS ---
+effects:
+  # Unique to Autumn/Spring: The ground turns to slop during rainstorms.
+  # Walking on Dirt, Farmland, Coarse Dirt, or Grass Paths applies Slowness.
+  # (Handled by MudSlownessEffect.java)
+  enable_mud_slowness: true

@@ -1,0 +1,127 @@
+# ==========================================
+#         KAIROS - SUMMER SETTINGS
+# ==========================================
+
+# How many in-game days this season lasts.
+# Variance adds or subtracts random days to make it unpredictable (e.g., 30 +/- 5 days).
+duration: 30
+variance: 5
+
+# --- TIME & DAYLIGHT ---
+time:
+  # Multipliers for day/night speed. (Handled by TimeCycleTask.java)
+  # 1.0 is normal speed. 1.5 means it goes 50% faster. 0.8 means it's 20% slower.
+  day_speed_multiplier: 0.8   # Summer days are longer, the sun stays up
+  night_speed_multiplier: 1.5 # Summer nights are short and humid
+
+# --- WEATHER FORCING ---
+weather_forcing:
+  # Summer is known for brutal heatwaves and droughts.
+  enabled: true
+  
+  # Chance to completely block rain/snow when the world tries to start a storm (Drought Mechanic)
+  block_rain_chance: 0.85
+  
+  # Chance to block the weather from clearing.
+  block_clear_chance: 0.0
+
+# --- FARMING & CROP GROWTH ---
+farming:
+  # Master toggle for Seasonal Crop restrictions
+  enabled: true
+  
+  # Base boost/penalty to passive crop growth ticks (Handled by CropGrowthListener.java)
+  growth_boost: 0.30  # Abundant sunlight boosts growth for most crops
+  growth_penalty: 0.0
+  
+  # Percentage of saplings that die when trying to grow into a tree
+  sapling_death_rate: 0.10
+  
+  # Set to true to allow crops to drop 2x loot when broken fully grown (Usually an Autumn feature)
+  enable_double_harvest: false
+  double_harvest_chance: 0.0
+  
+  # Crops that will simply refuse to grow during this season unless inside a Greenhouse
+  # Use "ALL" to disable farming entirely in this season.
+  # Note: "Hot" biomes (Deserts) completely bypass this list in Winter/Spring!
+  # Note: "Cold" biomes (Taigas) ONLY allow growth during the Summer!
+  banned_crops:
+    - "PUMPKIN_STEM"
+    - "MELON_STEM"
+
+  # Integration: Allow players to increase their double harvest chance using a skill plugin!
+  # Note: This affects HARVESTING (BlockBreakEvent), not passive chunk growth.
+  modifier:
+    placeholder: "%aureliumskills_farming%" 
+    scale: 0.005 # Each level of farming adds 0.5% chance to double harvest
+
+# --- FISHING & LOOT ---
+fishing:
+  # Master toggle for Seasonal Fishing mechanics
+  enabled: true
+  
+  # 0.5 = Fish bite twice as fast. 1.25 = Fish take 25% longer to bite.
+  wait_multiplier: 1.25 
+  
+  # The base chance to hook something from the custom loot table instead of a vanilla fish.
+  custom_loot_chance: 0.15
+  
+  # "REPLACE" will delete the vanilla fish. "ADDITIVE" will drop the custom loot alongside the vanilla fish.
+  mode: "REPLACE"
+  
+  # Integration: Allow players to increase custom loot chance using a skill plugin!
+  modifier:
+    placeholder: "%mcmmo_level_fishing%"
+    scale: 0.001
+    
+  loot:
+    coral_fan:
+      weight: 50.0
+      item: "HORN_CORAL_FAN"
+      min: 1
+      max: 3
+    nautilus:
+      weight: 10.0
+      item: "NAUTILUS_SHELL"
+      min: 1
+      max: 1
+    # Example: Drop custom items registered in your CustomItemRegistry!
+    wind_staff:
+      weight: 1.0
+      item: "wind_staff" 
+      min: 1
+      max: 1
+
+# --- MOB SPAWNING ---
+spawning:
+  # Chance to cancel natural animal spawns
+  wildlife_spawn_penalty: 0.10
+  
+  hibernate_bees: false
+  cancel_spiders: false
+  
+  # "REPLACE" will delete the vanilla mob. "ADDITIVE" will spawn the custom mob alongside it.
+  mode: "REPLACE"
+  
+  # Replaces natural spawns with Custom Entities (from CustomEntityType registry)
+  # Format: VANILLA_MOB_TO_REPLACE: { "NEW_MOB": chance }
+  mob_replacements:
+    HUSK:
+      ancient_mummy: 0.15  # 15% chance a Husk becomes a door-breaking Ancient Mummy
+    ZOMBIE:
+      blood_zombie: 0.05   # 5% chance a Zombie becomes a player-pulling Blood Zombie
+      vampire: 0.02        # 2% chance a Zombie is a shapeshifting Vampire
+
+# --- FOOD SPOILAGE ---
+spoilage:
+  # Summer heat causes raw foods (Beef, Pork, Chicken, Fish) to rot in player inventories!
+  # (Handled by FoodSpoilageTask.java)
+  enabled: true
+  
+  # Chance per interval for 1 piece of raw meat to turn into Rotten Flesh
+  chance_per_interval: 0.15
+  
+  # Integration: Allow players to resist food rot via external plugins (e.g. Foraging/Cooking skill)
+  modifier:
+    placeholder: "%aureliumskills_foraging%"
+    scale: 0.002 # Every level reduces rot chance b

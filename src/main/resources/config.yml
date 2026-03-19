@@ -1,0 +1,71 @@
+# ========================================== #
+#           KAIROS CORE CONFIGURATION        #
+# ========================================== #
+
+# Note: Individual mechanics have their own dedicated configuration files 
+# (e.g., diseases.yml, thirst.yml, temperature.yml, disasters.yml).
+
+# --- GLOBAL FARMING SETTINGS ---
+farming:
+  # (Handled by CropGrowthListener.java)
+  # A "Greenhouse" allows banned crops to grow regardless of the season or temperature.
+  # A crop is considered inside a Greenhouse if it has a solid block anywhere above it (blocking sky),
+  # AND has a block light level equal to or greater than this value.
+  greenhouse_light_level: 10
+
+# --- DISASTER DIFFICULTIES ---
+# Define how frequently random disasters happen and the weight of their levels.
+# (Handled by Difficulty.java and DisasterScheduler.java)
+# 
+# timer_base: Average time in seconds between disasters per player (3600 = 1 hour).
+# offset: Random variance added or subtracted to the timer (900 = +/- 15 mins).
+# level_weights: The chance (out of the total sum) for a disaster to roll Level 1, 2, 3, 4, 5, or 6.
+difficulties:
+  easy:
+    timer_base: 7200
+    offset: 1800
+    level_weights:[40, 30, 20, 10, 0, 0]  # Levels 5 and 6 will never happen naturally
+  normal:
+    timer_base: 3600
+    offset: 900
+    level_weights:[30, 25, 20, 15, 9, 1]  # 1% chance for a Level 6 disaster
+  hard:
+    timer_base: 1800
+    offset: 600
+    level_weights:[25, 23, 20, 18, 14, 5]
+  extreme:
+    timer_base: 900
+    offset: 300
+    level_weights:[0, 0, 29, 26, 25, 20]  # Only spawns Level 3+ disasters!
+  custom:
+    timer_base: 3600
+    offset: 600
+    level_weights:[20, 20, 20, 20, 10, 10]
+
+# --- EXTERNAL INTEGRATIONS ---
+# (Handled by DisasterScheduler.java)
+integration:
+  enabled: true
+  
+  # Dynamically modify the disaster timer based on an external plugin (e.g. Karma, Luck, Playtime)
+  disaster_frequency:
+    placeholder: "%aureliumskills_luck%" # Example: Player's Luck stat
+    # The math: finalTimer += (Placeholder_Value * scale)
+    # E.g. If scale is 10.0, and Luck is 5, the player gets +50 seconds added to their timer.
+    # If using Karma, a negative scale with negative karma will reduce the timer!
+    scale: 5.0
+
+# --- GLOBAL MESSAGES ---
+# Minor messages that don't fit into the dedicated messages.yml
+messages:
+  console_error_message: "&cOnly players can use this command!"
+  
+  # Broadcast when a player is directly killed by a disaster
+  # (Handled by DisasterDeathListener.java)
+  deaths:
+    extreme_winds: "&c%player% was blown away by Extreme Winds!"
+    earthquake: "&c%player% was swallowed by the Earth!"
+    blizzard: "&b%player% froze to death in a Blizzard!"
+    sandstorm: "&e%player% suffocated in a Sandstorm!"
+    tornado: "&8%player% was thrown by a Tornado!"
+    hurricane: "&1%player% was swept away by a Hurricane!"

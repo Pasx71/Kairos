@@ -1,0 +1,28 @@
+# ========================================== #
+#           KAIROS GUI SETTINGS              #
+# ========================================== #
+# Modify the appearance of internal Kairos menus here.
+# (Handled by EventMenu.java)
+
+events_menu:
+  title: "&8Ongoing Events"
+  # Must be a multiple of 9 (e.g., 9, 18, 27, 36, 45, 54)
+  size: 27
+
+  items:
+    # The item used to fill empty slots in the background
+    filler:
+      material: "GRAY_STAINED_GLASS_PANE"
+      
+    events:
+      # The slots where Active Disasters will populate.
+      # It will start at start_slot and fill continuously until end_slot.
+      start_slot: 10
+      end_slot: 16
+      
+    # What to display if there are absolutely no ongoing disasters
+    empty:
+      material: "BARRIER"
+      name: "&cNo Active Disasters"
+      lore: "&7The world is currently peaceful."
+      slot: 13

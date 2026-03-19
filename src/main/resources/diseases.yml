@@ -1,0 +1,177 @@
+# ========================================== #
+#           KAIROS DISEASE SYSTEM            #
+# ========================================== #
+# Note: Cures can be standard Minecraft Materials (e.g., MILK_BUCKET, HONEY_BOTTLE) 
+# or Kairos CustomItem IDs (e.g., herbal_tea).
+
+enabled: true
+
+# --- EXTERNAL INTEGRATIONS ---
+# (Handled by DiseaseListener.java and DiseaseTask.java)
+integration:
+  resistance:
+    # A placeholder that represents the player's immunity/resistance to disease.
+    placeholder: "%aureliumskills_immunity%" 
+    # Scale: How much each point of the placeholder reduces infection chance.
+    # E.g., If Immunity is 10, and scale is 0.005, the player has a 5% reduced chance of catching a disease.
+    scale: 0.005
+
+diseases:
+
+  # THE FLU: Spreads easily in the Winter through proximity and crowding. 
+  # Low damage, but causes heavy debuffs.
+  flu:
+    enabled: true
+    display_name: "&eThe Flu"
+    allowed_seasons:
+      - "WINTER"
+      - "AUTUMN"
+    hosts: [PLAYER, VILLAGER, COW, PIG, SHEEP]
+    spread:
+      proximity:
+        enabled: true
+        radius: 4.0
+        chance: 0.15
+      attack:
+        enabled: false
+        chance: 0.0
+    effects:
+      # Format: "POTION_TYPE:AMPLIFIER:DURATION_IN_TICKS"
+      # Note: Amplifier 0 = Level 1 potion effect. 100 ticks = 5 seconds.
+      potions:
+        - "HUNGER:0:100" 
+        - "SLOW:0:100"
+        - "WEAKNESS:0:100"
+      damage_tick: 0.0
+    messages:
+      contracted: "&cYou caught the Flu from your surroundings!"
+      symptom: "&e*Achoo!* You feel feverish and exhausted..."
+      cured: "&aYou have recovered from the Flu."
+    cures:
+      - "MILK_BUCKET"
+      - "MUSHROOM_STEW"
+      - "BEETROOT_SOUP"
+    outbreak:
+      enabled: true
+      crowd_threshold: 6
+      chance: 0.10
+
+  # RABIES: Transmitted strictly through animal bites. Extremely dangerous.
+  rabies:
+    enabled: true
+    display_name: "&4Rabies"
+    allowed_seasons:[] # Empty means it can happen in ANY season!
+    hosts:[PLAYER, WOLF, FOX, POLAR_BEAR, CAT, OCELOT, BAT]
+    spread:
+      proximity:
+        enabled: false
+      attack:
+        enabled: true
+        chance: 0.35
+    effects:
+      potions:
+        - "POISON:0:100"
+        - "CONFUSION:0:100"
+        - "INCREASE_DAMAGE:0:100"
+      damage_tick: 1.0
+    messages:
+      contracted: "&cYou were bitten and infected with Rabies!"
+      symptom: "&4You feel violently ill, foaming at the mouth..."
+      cured: "&aThe golden apple has purged the Rabies from your system."
+    cures:
+      - "GOLDEN_APPLE"
+      - "ENCHANTED_GOLDEN_APPLE"
+    outbreak:
+      enabled: false
+
+  # MALARIA: Contracted in the Summer, specifically through jungle/swamp mobs.
+  malaria:
+    enabled: true
+    display_name: "&2Malaria"
+    allowed_seasons:
+      - "SUMMER"
+    hosts: [PLAYER, SPIDER, CAVE_SPIDER, SLIME]
+    spread:
+      proximity:
+        enabled: true
+        radius: 5.0
+        chance: 0.05
+      attack:
+        enabled: true
+        chance: 0.15
+    effects:
+      potions:
+        - "POISON:0:100"
+        - "SLOW_DIGGING:1:100" # Mining fatigue
+      damage_tick: 0.5
+    messages:
+      contracted: "&cYou have contracted Malaria from a pest!"
+      symptom: "&2You are shivering violently and sweating..."
+      cured: "&aThe medicine has cured your Malaria."
+    cures:
+      - "HONEY_BOTTLE"
+      - "POTION" # Any standard water bottle/potion
+    outbreak:
+      enabled: true
+      crowd_threshold: 10
+      chance: 0.02
+
+  # ZOMBIE VIRUS: Highly infectious. Spreads from Zombies to Players/Villagers.
+  zombie_virus:
+    enabled: true
+    display_name: "&2&lZombie Virus"
+    allowed_seasons: []
+    hosts:[PLAYER, VILLAGER, ZOMBIE, ZOMBIE_VILLAGER, HUSK, DROWNED, blood_zombie]
+    spread:
+      proximity:
+        enabled: false
+      attack:
+        enabled: true
+        chance: 0.20
+    effects:
+      potions:
+        - "WITHER:0:100"
+        - "HUNGER:1:100"
+        - "SLOW:1:100"
+      damage_tick: 0.0 # Wither effect handles the damage inherently
+    messages:
+      contracted: "&2&lYou have been infected by the undead!"
+      symptom: "&aYour skin is turning green... you crave flesh..."
+      cured: "&eThe holy golden apple has halted the infection."
+    cures:
+      - "ENCHANTED_GOLDEN_APPLE"
+    outbreak:
+      enabled: false
+
+  # BLACK PLAGUE: An apocalyptic disease. Spreads incredibly fast via proximity and bites.
+  black_plague:
+    enabled: true
+    display_name: "&8&lThe Black Plague"
+    allowed_seasons:
+      - "SPRING"
+      - "AUTUMN"
+    hosts:[PLAYER, VILLAGER, COW, SHEEP, PIG, HORSE, SILVERFISH, SPIDER]
+    spread:
+      proximity:
+        enabled: true
+        radius: 6.0
+        chance: 0.25
+      attack:
+        enabled: true
+        chance: 0.50
+    effects:
+      potions:
+        - "BLINDNESS:0:100"
+        - "WEAKNESS:1:100"
+        - "POISON:1:100"
+      damage_tick: 2.0
+    messages:
+      contracted: "&8&lYou have contracted the Black Plague."
+      symptom: "&0Your vision fades, and you cough up blood..."
+      cured: "&fBy some miracle, you have survived the Plague."
+    cures:
+      - "ENCHANTED_GOLDEN_APPLE"
+    outbreak:
+      enabled: true
+      crowd_threshold: 4
+      chance: 0.20
